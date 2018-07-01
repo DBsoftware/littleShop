@@ -1,0 +1,36 @@
+<div class="modal-body">
+    <div class="w-100 text-center align-content-start">
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                    <span aria-hidden="true" class="text-danger">&times;</span>
+        </button>
+    </div>
+    <div class="w-100 text-center my-3">
+        <h5 class="modal-title text-capitalize">Carrito</h5>
+    </div>
+    <div class="contenedor w-100 h-100">
+        <div class="alert alert-info text-center" *ngIf="items.length === 0" role="alert">
+            <i class="fa fa-info-circle fa-3x"></i><br>
+            <strong>Tu carrito está vacido</strong>
+        </div>
+        <ul class="list-unstyled " *ngIf="items.length > 0" [ngClass]="items.length > 5 ? 'scrollDiv' : '' ">
+            <li *ngFor="let item of items; let i = index " class="media mb-3 animated fadeInLeft" [ngClass]="selectedItem === i ? 'fadeOutRight' : ''">
+                <a class="d-flex justify-content-center align-content-center" item-width="20%" href="#">
+                    <img class="img-thumbnail rounded-circle align-self-center" src="https://loremflickr.com/30/30/apple,fruit,white" alt="">
+                </a>
+                <div class="media-body align-self-center pl-2 pt-2  " item-width="80%">
+                    <div class="w-50 text-left d-inline-block">
+                        <h5>{{item.nombre}}</h5>
+                    </div>
+                    <div class="w-50 text-right d-inline-block">${{item.precio}}<i class="fa fa-remove ml-4 text-danger" (click)="removeItem(item,i)"></i></div>
+                </div>
+            </li>
+        </ul>
+        <div class="w-100 text-right mt-5">
+            <h2 class="d-block mb-5" *ngIf="total > 0">Total: ${{total}}</h2>
+            <button type="button" *ngIf="total > 0" class="btn btn-danger d-inline mr-3" (click)="closeModal()">Comprar</button>
+            <button type="button" class="btn btn-secondary d-inline " (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal-footer">
+</div>  -->

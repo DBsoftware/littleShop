@@ -1,0 +1,32 @@
+<app-modal [(show)]="modalDisplay" [(carrefour)]="crosroads"></app-modal>
+<div class="container-fluid">
+    <div class="row" style="height: 50px;">
+        <div class="col-12 bg-white">
+            <!-- Espacio en blanco -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class=" navbar fixed-top navbar-light bg-white animated slideInDown">
+                <a class="navbar-brand" [routerLink]="['/']">LittleShop</a>
+                <nav class="np navbar justify-content-end">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/about']">Nosotros</a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/blog']">blog</a>
+                    <a class="nav-link" *ngIf="!login" (click)="openModal(2)">login</a>
+                    <a class="nav-link" *ngIf="login" (click)="openModal(0)">
+                        <i class="fa fa-2x fa-shopping-cart"></i>
+                        <span class="badge badge-danger">{{cantidadCarrito}}</span>
+                    </a>
+                    <a class="nav-link" *ngIf="login" (click)="openModal(4)">
+                        <i class="fa fa-2x fa-heart"></i>
+                        <span class="badge badge-danger">1</span>
+                    </a>
+                    <a class="nav-link" (click)="openModal(3)">Contact</a>
+                    <a class="nav-link" *ngIf="login" (click)="logOut()">logout</a>
+                </nav>
+            </nav>
+        </div>
+    </div>
+</div>

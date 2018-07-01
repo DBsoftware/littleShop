@@ -1,0 +1,49 @@
+<section *ngIf="carrefour">
+    <h6 class="text-center text-uppercase bg-red-op text-white">
+        Filtros
+    </h6>
+    <div class="card">
+        <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control" name="name" id="buscar" placeholder="buscar" aria-label="">
+                <div class="input-group-append">
+                    <button class="btn bg-lemon-op text-whiterounded-0 text-white" type="button" aria-label=""><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Precio</h5>
+            <div class="form-group row">
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="nombre">min</label>
+                    <input type="number" class="form-control" name="nombre" id="nombre" aria-describedby="helpId" placeholder="">
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="password">max</label>
+                    <input type="number" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <h6 class="text-center text-uppercase bg-red-op text-white mt-3">
+        Categorias
+    </h6>
+    <div class="card mt-1">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">bebidas</li>
+            <li class="list-group-item">libros</li>
+            <li class="list-group-item">surtido</li>
+        </ul>
+    </div>
+</section>
+
+
+<div class="card" *ngIf="!carrefour">
+    <div class="card-body pb-1">
+        <div class="form-group align-self-center">
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Buscar Blog">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <app-blank [marginRow]="true" [height]="100"></app-blank>
+</div>
+
+<app-title [titulo]="'Blogs'"></app-title>
+
+<div class="container-fluid">
+    <app-blank [marginRow]="true" [height]="170"></app-blank>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <app-filtros [carrefour]="false"></app-filtros>
+        </div>
+    </div>
+    <div class="row justify-content-end pr-4 mt-4">
+        <app-paginacion></app-paginacion>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col my-4" *ngFor="let blog of blogs">
+            <app-unidad [carrefour]="false" [blog]="blog"></app-unidad>
+        </div>
+    </div>
+    <hr>
+    <hr>
+    <app-blank [marginRow]="false" [height]="50"></app-blank>
+</div>
+<div class="container-fluid">
+    <app-blank [marginRow]="false" [height]="100"></app-blank>
+</div>

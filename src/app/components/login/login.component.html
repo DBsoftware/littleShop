@@ -1,0 +1,31 @@
+<div class="modal-body">
+    <div class="w-100 text-center align-content-start">
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+                            <span aria-hidden="true" class="text-danger">&times;</span>
+                </button>
+    </div>
+    <div class="w-100 text-center my-3">
+        <h5 class="modal-title text-capitalize">Login</h5>
+    </div>
+    <div class="container">
+        <form ngNativeValidate #f="ngForm" (ngSubmit)="submit(f)">
+            <div class="form-group">
+                <label for="correo" class="col-sm-12 col-form-label">Usuario</label>
+                <div class="col">
+                    <input type="email" class="form-control" ngModel name="correo" id="correo" placeholder="" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-12 col-form-label">Password</label>
+                <div class="col">
+                    <input type="password" class="form-control" ngModel name="pass" id="password" placeholder="" required>
+                </div>
+            </div>
+            <div class="form-group my-5">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

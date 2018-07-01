@@ -1,1 +1,112 @@
-/* You can add global styles to this file, and also import other style files */
+.fondo {
+    z-index: 9999;
+    background: -webkit-linear-gradient(90deg, rgba(189, 247, 128, 0.7) 0, rgba(200, 226, 120, 0.7) 85%, rgba(242, 170, 162, 0.85) 98%, rgba(242, 170, 162, 0.85) 100%);
+    background: -moz-linear-gradient(0deg, rgba(189, 247, 128, 0.7) 0, rgba(200, 226, 120, 0.7) 85%, rgba(242, 170, 162, 0.85) 98%, rgba(242, 170, 162, 0.85) 100%);
+    background: linear-gradient(0deg, rgba(189, 247, 128, 0.7) 0, rgba(200, 226, 120, 0.7) 85%, rgba(242, 170, 162, 0.85) 98%, rgba(242, 170, 162, 0.85) 100%);
+    background-position: 50% 50%;
+}
+
+.over {
+    z-index: 9999999;
+}
+
+.h-500 {
+    height: 500%;
+}
+
+.bg-dark-op {
+    background-color: rgba(173, 196, 112, 0.7)
+}
+
+.bg-lemon-op {
+    background-color: rgba(173, 196, 112, 1);
+}
+
+.bg-darkGreen-op {
+    background-color: rgb(69, 78, 44);
+}
+
+.text-lemon {
+    color: rgba(173, 196, 112, 1);
+}
+
+.bg-red-op {
+    background-color: rgba(245, 91, 80, 0.8)
+}
+
+.bg-img {
+    background-image: url("https://loremflickr.com/2000/240/supermarket");
+}
+
+.filtros {
+    border: 1px solid #000;
+}
+
+.np a {
+    color: rgb(140, 158, 89);
+}
+
+.np a:hover {
+    color: rgb(252, 201, 135);
+    cursor: pointer;
+}
+
+.np .nav-link.active,
+.np .show>.nav-link {
+    background-color: rgba(173, 196, 112, 1);
+    color: white
+}
+
+a:not([href]):not([tabindex]) {
+    background-color: white;
+    color: rgb(140, 158, 89);
+}
+
+a:not([href]):not([tabindex]):hover {
+    color: rgb(252, 201, 135);
+    cursor: pointer;
+}
+
+.active {
+    background: #000;
+}
+
+.icFa a {
+    color: white;
+}
+
+.hr1 {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgba(173, 196, 112, 1);
+    margin: 1em 0;
+    padding: 0;
+}
+
+.hr2 {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid rgb(252, 201, 135);
+    margin: 1em 0;
+    padding: 0;
+}
+
+.titlePosition {
+    top: 5%;
+    right: 0;
+    z-index: 100;
+}
+
+.pricePosition {
+    bottom: 2.8%;
+    left: 10%;
+    z-index: 100;
+}
+
+.buttonsPosition {
+    bottom: 2.8%;
+    right: 10%;
+    z-index: 100;
+}

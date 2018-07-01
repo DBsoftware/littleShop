@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <app-blank [marginRow]="true" [height]="100"></app-blank>
+</div>
+
+<app-title [titulo]="'Little-Shop'"></app-title>
+
+
+<div class="container-fluid">
+    <app-blank [marginRow]="true" [height]="200"></app-blank>
+</div>
+
+<div class="container">
+    <div class="row  justify-content-center mb-5">
+        <div class="col-12 col-lg-3 mb-5">
+            <app-filtros [carrefour]="true"></app-filtros>
+        </div>
+        <div class="col-lg-9 col-12">
+            <div class="row justify-content-around">
+                <!-- ================== Listado ================ -->
+                <div class="col-lg-5 col-sm-6 mb-5" *ngFor="let producto of productos">
+                    <app-unidad [carrefour]="true" [producto]="producto"></app-unidad>
+                </div>
+            </div>
+            <!-- ================== Listado ================ -->
+            <!-- ================== Paginacion================ -->
+            <div class="row w-100 mt-3  justify-content-end">
+                <div class="ml-5 p-2 d-block">
+                    <app-paginacion></app-paginacion>
+                </div>
+            </div>
+            <!-- ================== Paginacion================ -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <app-blank [marginRow]="false" [height]="100"></app-blank>
+</div>

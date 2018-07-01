@@ -1,0 +1,17 @@
+<div class="fondo position-absolute w-100 h-500 animated fadeIn" [ngClass]="show"></div>
+<div class="modal mt-5 over animated fadeIn" tabindex="-1" role="dialog" [ngClass]="show">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+
+            </div> -->
+            <div [ngSwitch]="carrefour">
+                <app-cart *ngSwitchCase="options[0]" (close)="closeModal()"></app-cart>
+                <app-register *ngSwitchCase="options[1]" (close)="closeModal()"></app-register>
+                <app-login *ngSwitchCase="options[2]" (close)="closeModal()"></app-login>
+                <app-contact *ngSwitchCase="options[3]" (close)="closeModal()"></app-contact>
+                <app-wish-list *ngSwitchCase="options[4]" (close)="closeModal()"></app-wish-list>
+            </div>
+        </div>
+    </div>
+</div>
