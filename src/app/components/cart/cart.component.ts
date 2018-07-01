@@ -1,25 +1,15 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { ICartItem } from '../../models/interfaces/cartItem';
+import { iItem } from '../../models/models.index';
 import { CartService } from '../../providers/cart.service';
 import { element } from 'protractor';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styles: [`
-  .contenedor{
-    overflow: hidden;
-  }
-  .scrollDiv{
-    overflow-y:scroll;
-    height:270px;
-    /*background:gray;*/
-    padding: 5px;
-  }
-  `]
+  styles: []
 })
 export class CartComponent implements OnInit {
-  items: ICartItem[] = [];
+  items: iItem[] = [];
   selectedItem = 0;
   total = 0;
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -29,7 +19,7 @@ export class CartComponent implements OnInit {
   }
 
   constructor(public carritoSrv: CartService) {
-    this.items = this.carritoSrv.obtenerAlmacenamientoLocal()
+    this.items = this.carritoSrv.obtenerAlmacenamientoLocal();
     this.selectedItem = this.items.length;
     this.items.forEach(e => {
       this.total += e.precio;
@@ -41,10 +31,10 @@ export class CartComponent implements OnInit {
   }
 
 
-  removeItem(item: ICartItem, index: number) {
+  removeItem(item: iItem, index: number) {
     this.total -= item.precio;
     this.selectedItem = index;
-    this.carritoSrv.carritoLenght.emit(this.items.length-1);
+    this.carritoSrv.carritoLenght.emit( this.items.length - 1 );
     setTimeout(() => {
       this.selectedItem = this.items.length;
       this.items = this.items.filter(i => i.nombre !== item.nombre);

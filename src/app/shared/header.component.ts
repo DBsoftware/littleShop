@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../providers/login.service';
 import { opt } from '../dataSitio/opcionesModal';
-import { CartService } from '../providers/cart.service';
-import { ICartItem } from '../models/interfaces/cartItem';
+import { iItem } from '../models/models.index';
+import { WishListService, CartService } from '../providers/services.index';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-header',
@@ -15,13 +17,21 @@ export class HeaderComponent implements OnInit {
   crosroads: string;
   options = opt;
   cantidadCarrito = 0;
-  items: ICartItem[] = [];
+  cantidadwish = 0;
+  items: iItem[] = [];
+  itemsWish: iItem[] = [];
 
   constructor(public loginSrv: LoginService,
-              public carritoSrv: CartService) {
-    this.login = (localStorage.getItem('login') && localStorage.getItem('login') === 'true' );
+              public carritoSrv: CartService,
+              public wishSrv: WishListService
+            ) {
+    this.login = this.loginSrv.isLogIn();
+    // carrito section ================================== >>>>>>>>>>>>>
     this.items = this.carritoSrv.obtenerAlmacenamientoLocal();
     this.cantidadCarrito = this.items.length;
+    // WishList section  ================================== >>>>>>>>>>>>>
+    this.itemsWish = this.wishSrv.obtenerAlmacenamientoLocal();
+    this.cantidadwish = this.itemsWish.length;
   }
 
   ngOnInit() {
@@ -29,15 +39,27 @@ export class HeaderComponent implements OnInit {
       this.login = r;
       this.closeModal();
     });
+    // carrito section ================================== >>>>>>>>>>>>>
     this.carritoSrv.carritoLenght.subscribe(r => {
       this.cantidadCarrito = r ? r : 0;
     });
     this.carritoSrv.carritoItem.subscribe(r => {
       this.items = this.carritoSrv.obtenerAlmacenamientoLocal();
       this.items.findIndex( e =>  e.nombre === r.nombre) === -1 ?
-      this.items.push(r): console.log('el elemento ya está en el carrito');
+      this.addElement(r, false) : swal('Procedimiento innecesario', 'El elemento ya está en tu carrito', 'error');
       this.carritoSrv.modificarAlmacenamientoLocal(this.items);
       this.cantidadCarrito = this.items.length;
+    });
+  // WishList section  ================================== >>>>>>>>>>>>>
+    this.wishSrv.wishLenght.subscribe(r => {
+      this.cantidadwish = r ? r : 0;
+    });
+    this.wishSrv.wishItem.subscribe(r => {
+      this.itemsWish = this.wishSrv.obtenerAlmacenamientoLocal();
+      this.itemsWish.findIndex( e =>  e.nombre === r.nombre) === -1 ?
+      this.addElement(r, true) : swal('Procedimiento innecesario', 'El elemento ya está en tu lista', 'error');
+      this.wishSrv.modificarAlmacenamientoLocal(this.itemsWish);
+      this.cantidadwish = this.itemsWish.length;
     });
 
   }
@@ -46,6 +68,10 @@ export class HeaderComponent implements OnInit {
     this.crosroads = this.options[option];
   }
 
+  addElement(e: iItem, carrefour: boolean){
+    carrefour ? this.itemsWish.push(e) : this.items.push(e);
+    swal('Procedimiento exitoso', 'El elemento fue agregado exitosamente', 'success');
+  }
   closeModal() {
     this.modalDisplay = 'fadeOut';
 
@@ -58,5 +84,6 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.login = false;
     localStorage.removeItem('login');
+    swal('Has salido de tu cuenta', '', 'success');
   }
-}
+} 

@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListadoProductosComponent implements OnInit {
   @Input() productos;
+  thisWay = true;
+  @Input() total: number;
   constructor() { }
 
   ngOnInit() {

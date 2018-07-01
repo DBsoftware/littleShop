@@ -10,25 +10,25 @@
 </div>
 
 <div class="container">
+    <!-- ================== Paginacion================ -->
+    <div class="row w-100 mt-3  justify-content-end">
+        <div class="ml-5 p-2 d-block">
+            <app-paginacion [carrefour]="thisWay" [total]="total"></app-paginacion>
+        </div>
+    </div>
+
+    <!-- ================== filtros================ -->
     <div class="row  justify-content-center mb-5">
         <div class="col-12 col-lg-3 mb-5">
-            <app-filtros [carrefour]="true"></app-filtros>
+            <app-filtros [carrefour]="thisWay"></app-filtros>
         </div>
         <div class="col-lg-9 col-12">
             <div class="row justify-content-around">
                 <!-- ================== Listado ================ -->
                 <div class="col-lg-5 col-sm-6 mb-5" *ngFor="let producto of productos">
-                    <app-unidad [carrefour]="true" [producto]="producto"></app-unidad>
+                    <app-unidad [carrefour]="thisWay" [producto]="producto"></app-unidad>
                 </div>
             </div>
-            <!-- ================== Listado ================ -->
-            <!-- ================== Paginacion================ -->
-            <div class="row w-100 mt-3  justify-content-end">
-                <div class="ml-5 p-2 d-block">
-                    <app-paginacion></app-paginacion>
-                </div>
-            </div>
-            <!-- ================== Paginacion================ -->
         </div>
     </div>
 </div>

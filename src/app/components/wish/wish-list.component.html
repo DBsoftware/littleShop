@@ -5,7 +5,31 @@
         </button>
     </div>
     <div class="w-100 text-center my-3">
-        <h5 class="modal-title text-capitalize">Lista de Deseo</h5>
+        <h5 class="modal-title text-capitalize">Lista de deseos</h5>
     </div>
-    <p>Modal body text goes here.</p>
+    <div class="contenedor w-100 h-100">
+        <div class="alert alert-info text-center" *ngIf="items.length === 0" role="alert">
+            <i class="fa fa-info-circle fa-3x"></i><br>
+            <strong>Tu lista está vacia</strong>
+        </div>
+        <ul class="list-unstyled " *ngIf="items.length > 0" [ngClass]="items.length > 5 ? 'scrollDiv' : '' ">
+            <li *ngFor="let item of items; let i = index " class="media mb-3 animated fadeInLeft" [ngClass]="selectedItem === i ? 'fadeOutRight' : ''">
+                <a class="d-flex justify-content-center align-content-center" item-width="20%" href="#">
+                    <img class="img-thumbnail rounded-circle align-self-center" src="https://loremflickr.com/30/30/apple,fruit,white" alt="">
+                </a>
+                <div class="media-body align-self-center pl-2 pt-2  " item-width="80%">
+                    <div class="w-50 text-left d-inline-block">
+                        <p class="lead">{{item.nombre}}</p>
+                    </div>
+                    <div class="w-50 text-right d-inline-block">${{item.precio}}
+                        <i class="fa fa-cart-arrow-down ml-4 text-success pointer" (click)="addToCart(item,i)"></i>
+                        <i class="fa fa-remove ml-4 text-danger pointer" (click)="removeItem(item,i)"></i></div>
+                </div>
+            </li>
+        </ul>
+        <div class="w-100 text-right mt-5">
+            <h2 class="d-block mb-5" *ngIf="total > 0">Total: ${{total}}</h2>
+            <button type="button" class="btn btn-secondary d-inline " (click)="closeModal()">Close</button>
+        </div>
+    </div>
 </div>

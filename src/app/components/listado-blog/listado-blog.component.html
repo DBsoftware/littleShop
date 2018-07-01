@@ -11,18 +11,19 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <app-filtros [carrefour]="false"></app-filtros>
+            <app-filtros [carrefour]="thisWay"></app-filtros>
         </div>
     </div>
     <div class="row justify-content-end pr-4 mt-4">
-        <app-paginacion></app-paginacion>
+        <app-paginacion [carrefour]="thisWay" [total]="total"></app-paginacion>
     </div>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col my-4" *ngFor="let blog of blogs">
-            <app-unidad [carrefour]="false" [blog]="blog"></app-unidad>
+    <section *ngIf="loading" class="loader" width="200" height="200"></section>
+    <div class="row" *ngIf="!loading">
+        <div class="col-6 my-4" *ngFor="let blog of blogs">
+            <app-unidad [carrefour]="thisWay" [blog]="blog"></app-unidad>
         </div>
     </div>
     <hr>

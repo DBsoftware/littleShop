@@ -1,4 +1,4 @@
 <section class="animated fadeIn">
-    <app-listado-productos *ngIf="!carrefour" [productos]="productos"></app-listado-productos>
-    <app-listado-blog *ngIf="carrefour" [blogs]="blogs"></app-listado-blog>
+    <app-listado-productos *ngIf="!carrefour" [productos]="productos" [total]="total"></app-listado-productos>
+    <app-listado-blog *ngIf="carrefour" [blogs]="blogs" [total]="total"></app-listado-blog>
 </section>

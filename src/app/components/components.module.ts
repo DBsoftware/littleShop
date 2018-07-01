@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 import { WishListComponent,
@@ -20,7 +21,8 @@ import { WishListComponent,
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    PipesModule
     ],
   declarations: [
     ModalComponent,

@@ -1,24 +1,48 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { ICartItem } from '../../models/interfaces/cartItem';
-import { CartService } from '../../providers/cart.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { iItem } from '../../models/models.index';
+import { WishListService, CartService, LoginService } from '../../providers/services.index';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-unidad',
   templateUrl: './unidad.component.html',
-  styles: []
+  styles: [
+    `
+    .text-blog {
+      overflow: hidden;
+
+    }
+    `
+  ]
 })
 export class UnidadComponent implements OnInit {
   @Input() carrefour: boolean;
-  @Input() producto: ICartItem;
+  @Input() producto: iItem;
   @Input() blog: any;
+  login = false;
 
-  constructor(private cartService: CartService) { }
+  constructor(private loginSrv: LoginService,
+              private cartService: CartService,
+              private wishService: WishListService){
+    this.login = this.loginSrv.isLogIn();
 
-  ngOnInit() {
   }
 
-  addToCart(p: ICartItem) {
-    this.cartService.carritoItem.emit(p);
+  ngOnInit() {
+    this.loginSrv.notification.subscribe(r => {
+      this.login = r;
+    });
+  }
+
+  addToCart(p: iItem) {
+    this.login ?
+    this.cartService.carritoItem.emit(p) :
+    swal('Debes estar autenticado', 'Para usar esta caracteristica debes estar autenticado', 'error');
+  }
+  addToWish(p: iItem) {
+    this.login ?
+    this.wishService.wishItem.emit(p) :
+    swal('Debes estar autenticado', 'Para usar esta caracteristica debes estar autenticado', 'error');
   }
 
 }

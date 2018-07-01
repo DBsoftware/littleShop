@@ -9,5 +9,9 @@ export class LoginService {
   almacenarLocalmente() {
     localStorage.setItem('login', 'true');
   }
+
+  isLogIn() {
+    return (localStorage.getItem('login') && localStorage.getItem('login') === 'true' );
+  }
 }
 
