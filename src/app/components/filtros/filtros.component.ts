@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CatalogoService } from '../../providers/services.index';
 
 @Component({
   selector: 'app-filtros',
@@ -7,9 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FiltrosComponent implements OnInit {
   @Input() carrefour: boolean;
-  constructor() { }
+  @Output() out: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(public catalogoService: CatalogoService) { }
 
   ngOnInit() {
+  }
+
+  buscar(t: string) {
+    this.out.emit(true);
+    setTimeout(() => {
+      this.catalogoService.termino.emit(t);
+      this.out.emit(false);
+    }, 100);
   }
 
 }

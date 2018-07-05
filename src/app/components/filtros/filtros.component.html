@@ -5,9 +5,9 @@
     <div class="card">
         <div class="card-body">
             <div class="input-group">
-                <input type="text" class="form-control" name="name" id="buscar" placeholder="buscar" aria-label="">
+                <input type="text" #input (keyup.enter)="buscar(input.value)" class="form-control" name="name" id="buscar" placeholder="buscar" aria-label="">
                 <div class="input-group-append">
-                    <button class="btn bg-lemon-op text-whiterounded-0 text-white" type="button" aria-label=""><i class="fa fa-search"></i></button>
+                    <button (click)="buscar(input.value)" class="btn bg-lemon-op text-whiterounded-0 text-white" type="button" aria-label=""><i class="fa fa-search"></i></button>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
 <div class="card" *ngIf="!carrefour">
     <div class="card-body pb-1">
         <div class="form-group align-self-center">
-            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Buscar Blog">
+            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" #in (keyup.enter)="buscar(in.value)" placeholder="Buscar + enter">
         </div>
     </div>
 </div>

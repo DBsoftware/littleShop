@@ -20,15 +20,18 @@ export class UnidadComponent implements OnInit {
   @Input() producto: iItem;
   @Input() blog: any;
   login = false;
-
+  flip = 'd-none';
+  loading = true;
   constructor(private loginSrv: LoginService,
               private cartService: CartService,
               private wishService: WishListService){
-    this.login = this.loginSrv.isLogIn();
-
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   }
 
   ngOnInit() {
+    this.login = this.loginSrv.isLogIn();
     this.loginSrv.notification.subscribe(r => {
       this.login = r;
     });
@@ -43,6 +46,17 @@ export class UnidadComponent implements OnInit {
     this.login ?
     this.wishService.wishItem.emit(p) :
     swal('Debes estar autenticado', 'Para usar esta caracteristica debes estar autenticado', 'error');
+  }
+
+  in() {
+    this.flip = 'fadeIn d-block';
+  }
+
+  out() {
+    this.flip = 'fadeOut d-block';
+    setTimeout(() => {
+      this.flip = 'd-none';
+    }, 100);
   }
 
 }

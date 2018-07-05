@@ -4,8 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { LoginService,
   CartService,
-  BlogService,
-  ProductService,
+  CatalogoService,
   WishListService } from './services.index';
 
 @NgModule({
@@ -17,8 +16,7 @@ import { LoginService,
   providers: [
     LoginService,
     CartService,
-    BlogService,
-    ProductService,
+    CatalogoService,
     WishListService
   ]
 })

@@ -10,7 +10,6 @@
         <li class="page-item" *ngFor="let pag of paginas" [ngClass]="paginaActual === pag ? 'active disabled' : ''">
             <a class="page-link pointer" (click)="cambioPagina(pag)">{{pag +1}}</a>
         </li>
-
         <li class="page-item">
             <a class="page-link pointer" aria-label="Next" (click)="cambioPagina(paginaActual + 1)">
                 <span aria-hidden=" true ">&raquo;</span>

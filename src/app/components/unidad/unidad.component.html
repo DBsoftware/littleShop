@@ -1,27 +1,40 @@
-<section class="position-relative animated flipInY justify-content-center" style="width: 300px" *ngIf="!loading &&carrefour">
-    <img class="img-fluid" src="https://picsum.photos/200" width="300" height="300" alt="">
-    <div class="">
-        <div class="d-block w-75 position-absolute bg-dark-op titlePosition pt-2 pl-3">
-            <h5 class=" text-white">{{producto.nombre}}</h5>
-        </div>
-        <div class="d-block position-absolute pricePosition">
-            <h3 class="text-white"> <span class="badge badge-danger">${{producto.precio}}</span> </h3>
-        </div>
-        <div class="d-block position-absolute buttonsPosition">
-            <div class=" d-flex w-100  justify-content-end">
-                <button class="btn mx-1 bg-lemon-op text-white d-inline-block align-self-end" (click)="addToCart(producto)"><i class="fa fa-cart-plus"></i></button>
-                <button class="btn mx-1 bg-danger text-white d-inline-block align-self-end" (click)="addToWish(producto)"><i class="fa fa-heart-o"></i></button>
-            </div>
+<section class="product position-relative animated justify-content-center" *ngIf="carrefour" (mouseover)="in()" (mouseleave)="out()">
+    <img class="img-fluid position-absolute imgPro" [src]="producto.img | imagen:'productos'" width="300" height="300" alt="">
+    <div class="d-block w-75 position-absolute bg-dark-op titlePosition pt-2 pl-3">
+        <h5 class=" text-white">{{producto.nombre}}</h5>
+    </div>
+    <div class="w-100 position-absolute bg-dark-op descPosition pt-2 animated" [ngClass]="flip">
+        <p class="text-white text-center text-light">{{producto.desc}}</p>
+    </div>
+    <div class="d-block position-absolute pricePosition ">
+        <h3 class="text-white"> <span class="badge badge-danger">${{producto.precio}}</span> </h3>
+    </div>
+    <div class="position-absolute mb-1 buttonsPosition animated" [ngClass]="flip" *ngIf="login">
+        <div class=" d-flex w-100  justify-content-end">
+            <button class="btn mx-1 bg-lemon-op text-white d-inline-block align-self-end" (click)="addToCart(producto)"><i class="fa fa-cart-plus"></i></button>
+            <button class="btn mx-1 bg-danger text-white d-inline-block align-self-end" (click)="addToWish(producto)"><i class="fa fa-heart-o"></i></button>
         </div>
     </div>
+    <div class="w-100 h-100 bg-darkGreen-op"></div>
 </section>
-
+<!--
+=================================================
+=================================================
+=================================================
+=================================================
+UNIDAD DE BLOG
+=================================================
+=================================================
+=================================================
+=================================================
+ -->
 <div class="media animated fadeIn" *ngIf="!carrefour">
-    <a class="d-flex align-self-start pt-1" href="#">
-        <img src="https://picsum.photos/200" width="200" alt="">
-    </a>
+    <img class="position-absolute imgBlog img-fluid" [src]="blog.img | imagen:'blogs'" width="200" alt="">
+    <div class="blog bg-darkGreen-op no-gutters">
+        <section class="loader mt-5" *ngIf="loading" width="100" height="100"></section>
+    </div>
     <div class="media-body mx-3" style="height: 200px;">
         <h4 class="h-25 d-block">{{blog.titulo}}</h4>
-        <p class="text-justify text-blog h-75 d-block">{{blog.contenido | ellipsis:['270']}} <span><a href="#">more</a></span></p>
+        <p class="text-justify text-blog h-75 d-block">{{blog.contenido | ellipsis:['220']}} <span><a href="#">más</a></span></p>
     </div>
 </div>

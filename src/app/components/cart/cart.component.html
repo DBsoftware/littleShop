@@ -15,7 +15,7 @@
         <ul class="list-unstyled " *ngIf="items.length > 0" [ngClass]="items.length > 5 ? 'scrollDiv' : '' ">
             <li *ngFor="let item of items; let i = index " class="media mb-3 animated fadeInLeft" [ngClass]="selectedItem === i ? 'fadeOutRight' : ''">
                 <a class="d-flex justify-content-center align-content-center" item-width="20%" href="#">
-                    <img class="img-thumbnail rounded-circle align-self-center" src="https://loremflickr.com/30/30/apple,fruit,white" alt="">
+                    <img class="img-thumbnail rounded-circle align-self-center" [src]="item.img | imagen:'productos'" width="40" alt="">
                 </a>
                 <div class="media-body align-self-center pl-2 pt-2  " item-width="80%">
                     <div class="w-50 text-left d-inline-block">

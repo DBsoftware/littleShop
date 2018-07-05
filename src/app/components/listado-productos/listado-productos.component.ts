@@ -9,9 +9,15 @@ export class ListadoProductosComponent implements OnInit {
   @Input() productos;
   thisWay = true;
   @Input() total: number;
+  fadeOut: boolean;
   constructor() { }
 
   ngOnInit() {
+    // this.fadeOut = false;
+  }
+
+  salida(e: any) {
+    this.fadeOut = e;
   }
 
 }

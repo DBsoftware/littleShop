@@ -1,32 +1,39 @@
 <div class="container-fluid">
-    <app-blank [marginRow]="true" [height]="100"></app-blank>
+    <app-blank [marginRow]="true" [height]="150"></app-blank>
 </div>
 
 <app-title [titulo]="'Little-Shop'"></app-title>
 
-
 <div class="container-fluid">
-    <app-blank [marginRow]="true" [height]="200"></app-blank>
+    <app-blank [marginRow]="true" [height]="250"></app-blank>
+</div>
+<div class="container-fluid position-relative">
+    <div class="row  mt-3 position-absolute paginacion2">
+        <div class="ml-1 animated fadeIn">
+            <app-paginacion [total]="total" *ngIf="total > 4"></app-paginacion>
+        </div>
+    </div>
 </div>
 
 <div class="container">
     <!-- ================== Paginacion================ -->
-    <div class="row w-100 mt-3  justify-content-end">
-        <div class="ml-5 p-2 d-block">
-            <app-paginacion [carrefour]="thisWay" [total]="total"></app-paginacion>
-        </div>
-    </div>
+
 
     <!-- ================== filtros================ -->
     <div class="row  justify-content-center mb-5">
         <div class="col-12 col-lg-3 mb-5">
-            <app-filtros [carrefour]="thisWay"></app-filtros>
+            <app-filtros [carrefour]="thisWay" (out)="salida($event)"></app-filtros>
         </div>
         <div class="col-lg-9 col-12">
-            <div class="row justify-content-around">
+            <div class="row justify-content-around" *ngIf="productos.length !== 0">
                 <!-- ================== Listado ================ -->
-                <div class="col-lg-5 col-sm-6 mb-5" *ngFor="let producto of productos">
+                <div class="col-lg-5 col-sm-6 mb-5 animated" [ngClass]="fadeOut ? 'fadeOut' : 'fadeIn' " *ngFor="let producto of productos">
                     <app-unidad [carrefour]="thisWay" [producto]="producto"></app-unidad>
+                </div>
+            </div>
+            <div class="row align-content-center h-100 animated fadeIn" *ngIf="productos.length === 0">
+                <div class=" col alert alert-info text-center align-self-center" role="alert">
+                    <h3><strong>No existen registros para mostrar</strong></h3>
                 </div>
             </div>
         </div>

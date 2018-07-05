@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BlogService, ProductService } from '../../providers/services.index';
+import { CatalogoService } from '../../providers/services.index';
 
 @Component({
   selector: 'app-paginacion',
@@ -7,13 +7,13 @@ import { BlogService, ProductService } from '../../providers/services.index';
   styles: []
 })
 export class PaginacionComponent implements OnInit {
-  @Input() carrefour: boolean;
   paginaActual = 0;
   paginas: number[] = [];
   cantidadPagina = 4;
   @Input() total: number;
-  constructor(public blogSrv: BlogService,
-    public productSrv: ProductService) {}
+  constructor(public catalogoService: CatalogoService) {
+
+  }
 
   ngOnInit() {
     this.createPagination((this.total / this.cantidadPagina));
@@ -23,9 +23,7 @@ export class PaginacionComponent implements OnInit {
     if (n < 0 || n > (this.paginas.length - 1)) {
       return;
     }
-    this.carrefour ?
-    this.productSrv.page.emit(n) :
-    this.blogSrv.page.emit(n);
+    this.catalogoService.page.emit(n);
     this.paginaActual = n;
   }
 

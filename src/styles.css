@@ -3,11 +3,28 @@
 }
 
 .fondo {
-    z-index: 9999;
     background: -webkit-linear-gradient(90deg, rgba(189, 247, 128, 0.7) 0, rgba(200, 226, 120, 0.7) 85%, rgba(242, 170, 162, 0.85) 98%, rgba(242, 170, 162, 0.85) 100%);
     background: -moz-linear-gradient(0deg, rgba(189, 247, 128, 0.7) 0, rgba(200, 226, 120, 0.7) 85%, rgba(242, 170, 162, 0.85) 98%, rgba(242, 170, 162, 0.85) 100%);
     background: linear-gradient(0deg, rgba(189, 247, 128, 0.7) 0, rgba(200, 226, 120, 0.7) 85%, rgba(242, 170, 162, 0.85) 98%, rgba(242, 170, 162, 0.85) 100%);
     background-position: 50% 50%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0;
+    overflow-y: auto;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.fondo:before {
+    content: " ";
+    vertical-align: middle;
+    height: 100%;
 }
 
 .over {
@@ -15,7 +32,7 @@
 }
 
 .h-500 {
-    height: 500%;
+    height: 500px;
 }
 
 .bg-dark-op {
@@ -40,7 +57,7 @@
 
 .bg-img {
     background-image: url("https://loremflickr.com/1200/600/landscape");
-    height: 100%;
+    /* height: 100%; */
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -109,6 +126,13 @@ a:not([href]):not([tabindex]):hover {
     z-index: 100;
 }
 
+.descPosition {
+    top: 30%;
+    right: 0;
+    left: 0;
+    z-index: 100;
+}
+
 .pricePosition {
     bottom: 2.8%;
     left: 10%;
@@ -138,8 +162,8 @@ a:not([href]):not([tabindex]):hover {
     border-top: 16px solid coral;
     /* Blue */
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
@@ -181,7 +205,36 @@ a:not([href]):not([tabindex]):hover {
     color: rgb(140, 158, 89);
 }
 
+.imgPro {
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
 
-/* .page-link:not(:disabled):not(.disabled) {
-    color: rgb(140, 158, 89);
-} */
+.imgBlog {
+    top: 0;
+    left: 20;
+    z-index: 20;
+}
+
+.product {
+    width: 300px;
+    height: 300px;
+}
+
+.blog {
+    width: 200px;
+    height: 200px;
+}
+
+.paginacion {
+    top: -55%;
+    left: 2%;
+    z-index: 99999999999;
+}
+
+.paginacion2 {
+    top: -60px;
+    left: 90px;
+    z-index: 99999999999;
+}

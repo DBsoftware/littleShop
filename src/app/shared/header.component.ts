@@ -68,9 +68,9 @@ export class HeaderComponent implements OnInit {
     this.crosroads = this.options[option];
   }
 
-  addElement(e: iItem, carrefour: boolean){
+  addElement(e: iItem, carrefour: boolean) {
     carrefour ? this.itemsWish.push(e) : this.items.push(e);
-    swal('Procedimiento exitoso', 'El elemento fue agregado exitosamente', 'success');
+    swal('Procedimiento exitoso', `Elemento agregado a tu ${carrefour ? 'lista de deseos' : 'carrito'}`, 'success');
   }
   closeModal() {
     this.modalDisplay = 'fadeOut';
@@ -84,6 +84,8 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.login = false;
     localStorage.removeItem('login');
+    this.loginSrv.notification.emit(false);
     swal('Has salido de tu cuenta', '', 'success');
   }
-} 
+}
+

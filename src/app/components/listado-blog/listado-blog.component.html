@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <app-blank [marginRow]="true" [height]="100"></app-blank>
+    <app-blank [marginRow]="true" [height]="150"></app-blank>
 </div>
 
 <app-title [titulo]="'Blogs'"></app-title>
 
 <div class="container-fluid">
-    <app-blank [marginRow]="true" [height]="170"></app-blank>
+    <app-blank [marginRow]="true" [height]="250"></app-blank>
 </div>
 
 <div class="container">
@@ -14,16 +14,20 @@
             <app-filtros [carrefour]="thisWay"></app-filtros>
         </div>
     </div>
-    <div class="row justify-content-end pr-4 mt-4">
-        <app-paginacion [carrefour]="thisWay" [total]="total"></app-paginacion>
+    <div class="row pl-4 justify-content-start mt-2" *ngIf="total > 4">
+        <app-paginacion [total]="total"></app-paginacion>
     </div>
 </div>
 
 <div class="container">
-    <section *ngIf="loading" class="loader" width="200" height="200"></section>
-    <div class="row" *ngIf="!loading">
-        <div class="col-6 my-4" *ngFor="let blog of blogs">
+    <div class="row" *ngIf="blogs.length !== 0">
+        <div class="col-lg-6 col-12  my-4" *ngFor="let blog of blogs">
             <app-unidad [carrefour]="thisWay" [blog]="blog"></app-unidad>
+        </div>
+    </div>
+    <div class="row align-content-center h-100 mt-5" *ngIf="blogs.length === 0">
+        <div class=" col alert alert-info text-center align-self-center" role="alert">
+            <h3><strong>No existen registros para mostrar</strong></h3>
         </div>
     </div>
     <hr>

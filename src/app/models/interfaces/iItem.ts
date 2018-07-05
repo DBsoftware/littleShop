@@ -3,4 +3,5 @@ export interface iItem {
     nombre: string;
     precio: number;
     img?: string;
+    desc?: string;
 }

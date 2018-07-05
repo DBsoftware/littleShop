@@ -44,6 +44,7 @@ export class WishListComponent implements OnInit {
   addToCart(p: iItem, index: number) {
     this.cartService.carritoItem.emit(p);
     this.removeItem(p, index);
+    this.closeModal();
   }
 
 }

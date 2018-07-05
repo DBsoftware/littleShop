@@ -3,7 +3,7 @@ import { Router, ActivationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import { iItem, iBlog } from '../../models/models.index';
-import { BlogService, ProductService } from '../../providers/services.index';
+import { CatalogoService } from '../../providers/catalogo.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -16,26 +16,27 @@ export class CatalogoComponent implements OnInit {
   productos: iItem[] = [];
   blogs: iBlog[] = [];
   total: number;
+  termino = '';
   constructor(public router: Router,
-              public blogSrv: BlogService,
-              public productSrv: ProductService) {
-    this.getDataRoute()
-    .subscribe(d => {
-      this.carrefour = (d.page === 'blog');
-    });
-    this.seudoServicio();
-    this.productos = this.productos.slice(0, 4);
-    this.blogs = this.blogs.slice(0, 4);
+              public catalogoService: CatalogoService) {
+      this.getDataRoute()
+      .subscribe(d => {
+        this.carrefour = (d.page === 'blog');
+        this.catalogoService.carrefour = this.carrefour;
+        this.cargar();
+      });
   }
 
   ngOnInit() {
-  this.blogSrv.page.subscribe(r => {
-    this.seudoServicio();
-    this.blogs = this.blogs.slice(r * 4, (r * 4) + 4);
+  this.catalogoService.page.subscribe(r => {
+    this.termino === '' ?
+    this.cargar(r * 4) :
+    this.buscar(r * 4);
   });
-  this.productSrv.page.subscribe(r => {
-    this.seudoServicio();
-    this.productos = this.productos.slice(r * 4, (r * 4) + 4);
+
+  this.catalogoService.termino.subscribe(termino => {
+    this.termino = termino;
+    this.buscar();
   });
 
   }
@@ -49,31 +50,32 @@ export class CatalogoComponent implements OnInit {
     );
   }
 
-  seudoServicio() {
-    this.productos = [];
-    this.blogs = [];
-
-    for (let index = 0; index < 21; index++) {
-      this.productos.push({
-        nombre: `Nombre de Producto ${index}`,
-        precio: 1300 * index === 0 ? 1300 : 1300 * index
-      });
-      this.blogs.push({
-        titulo: `Blog ${index}`,
-        contenido: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Unde porro hic aperiam,
-        maiores, perferendis laboriosam blanditiis
-        officia quidem autem nesciunt atque reprehenderit
-        cum! Facilis magni culpa rem sequi, nihi
-        maiores, perferendis laboriosam blanditiis
-        officia quidem autem nesciunt atque reprehenderit
-        cum! Facilis magni culpa rem sequi, nihi
-        maiores, perferendis laboriosam blanditiis
-        officia quidem autem nesciunt atque reprehenderit
-        cum! Facilis magni culpa rem sequi, nihi
-        l praesentium!Animi`
-      });
-    }
-    this.total = this.blogs.length;
+  cargar(n?) {
+        // this.cargando = true;
+        this.catalogoService.cargar(n)
+        .subscribe((resp: any) => {
+          this.end(resp);
+          // this.cargando = false;
+        });
   }
+
+  buscar(desde: number = 0) {
+    // this.cargando = true;
+    if (this.termino === '' ) {
+      this.cargar();
+      return;
+    }
+    this.catalogoService.buscar(this.termino, desde).subscribe((resp: any) => {
+      this.end(resp);
+      // this.cargando = false;
+    });
+  }
+
+  end(r: any) {
+    this.total = r.total;
+    this.carrefour ?
+    this.blogs = r.aux :
+    this.productos = r.aux;
+  }
+
 }
