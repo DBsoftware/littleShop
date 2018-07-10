@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styles: []
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styles: []
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  constructor() { }
+constructor() { }
 
-  ngOnInit() {
-  }
+
 
     onActivate(event) {
         const scrollToTop = window.setInterval(() => {

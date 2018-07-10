@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   cantidadwish = 0;
   items: iItem[] = [];
   itemsWish: iItem[] = [];
+  drop = false;
 
   constructor(public loginSrv: LoginService,
               public carritoSrv: CartService,
@@ -64,6 +65,7 @@ export class HeaderComponent implements OnInit {
 
   }
   openModal(option: number) {
+    this.drop = false;
     this.modalDisplay = 'd-block';
     this.crosroads = this.options[option];
   }
@@ -86,6 +88,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('login');
     this.loginSrv.notification.emit(false);
     swal('Has salido de tu cuenta', '', 'success');
+    this.drop = false;
   }
 }
 

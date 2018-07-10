@@ -35,6 +35,6 @@ UNIDAD DE BLOG
     </div>
     <div class="media-body mx-3" style="height: 200px;">
         <h4 class="h-25 d-block">{{blog.titulo}}</h4>
-        <p class="text-justify text-blog h-75 d-block">{{blog.contenido | ellipsis:['220']}} <span><a href="#">más</a></span></p>
+        <p class="text-justify text-blog h-75 d-block">{{blog.contenido | ellipsis:['220']}} <span><a [routerLink]="['/blog', blog._id]" >más</a></span></p>
     </div>
 </div>

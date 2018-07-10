@@ -76,16 +76,16 @@
 .np a:hover {
     color: rgb(252, 201, 135);
     cursor: pointer;
+    background-color: #fff;
 }
 
 .np .nav-link.active,
 .np .show>.nav-link {
     background-color: rgba(173, 196, 112, 1);
-    color: white
+    color: rgb(252, 255, 255);
 }
 
 a:not([href]):not([tabindex]) {
-    background-color: white;
     color: rgb(140, 158, 89);
 }
 
@@ -237,4 +237,69 @@ a:not([href]):not([tabindex]):hover {
     top: -60px;
     left: 90px;
     z-index: 99999999999;
+}
+
+.dropdown-menu {
+    left: 65%;
+    top: 105%;
+    z-index: -1;
+}
+
+.navbar-brand {
+    font-size: 1em;
+}
+
+.bg-white-low {
+    background-color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9em;
+}
+
+
+/* cover */
+
+
+/* Custom default button */
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #fff;
+    text-shadow: none;
+    /* Prevent inheritance from `body` */
+    background-color: rgba(173, 196, 112, 1);
+    border: .05rem solid rgba(173, 196, 112, 1);
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body,
+.bodyClass {
+    height: 110%;
+    background-color: #fff;
+}
+
+.bodyClass {
+    display: -ms-flexbox;
+    display: flex;
+    color: #000;
+    /* text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5); */
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+.cover-container {
+    max-width: 42em;
+}
+
+.cover {
+    padding: 0 1.5rem;
+    color: #fff
+}
+
+.cover .btn-lg {
+    padding: .75rem 1.25rem;
+    font-weight: 700;
 }
